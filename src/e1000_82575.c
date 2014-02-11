@@ -295,6 +295,10 @@ static s32 e1000_init_phy_params_82575(struct e1000_hw *hw)
 		phy->ops.set_d3_lplu_state = e1000_set_d3_lplu_state_82580;
 		phy->ops.force_speed_duplex = e1000_phy_force_speed_duplex_m88;
 		break;
+	case VSC8584_E_PHY_ID:
+		printk(KERN_NOTICE, "found vitesse 8584 phy");
+		//phy-type	= vitesse_phy_8585;
+		break;
 	default:
 		ret_val = -E1000_ERR_PHY;
 		goto out;
