@@ -25,6 +25,8 @@
 
 *******************************************************************************/
 
+#include "e1000_vitesse.h"
+
 #ifndef _E1000_DEFINES_H_
 #define _E1000_DEFINES_H_
 
@@ -1158,7 +1160,6 @@
 #define I350_I_PHY_ID		0x015403B0
 #define I210_I_PHY_ID		0x01410C00
 #define IGP04E1000_E_PHY_ID	0x02A80391
-#define VSC8584_E_PHY_ID	0x000707C0
 #define M88_VENDOR		0x0141
 
 /* M88E1000 Specific Registers */
