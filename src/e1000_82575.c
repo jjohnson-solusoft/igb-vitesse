@@ -296,8 +296,11 @@ static s32 e1000_init_phy_params_82575(struct e1000_hw *hw)
 		phy->ops.force_speed_duplex = e1000_phy_force_speed_duplex_m88;
 		break;
 	case VSC8584_E_PHY_ID:
-		printk(KERN_INFO "found vitesse 8584 phy with id 0x%x",phy->id);
+		printk(KERN_INFO "found vitesse 8584 phy with id 0x%08x @ 0x%08x ",phy->id,phy->addr);
 		phy->type	= vitesse_phy_8584;
+	/*	phy->ops.check_polarity = e1000_check_polarity_vsc8584;
+		phy->ops.get_info = e1000_get_phy_info_vsc8584;
+		phy->get */
 		break;
 	default:
 		ret_val = -E1000_ERR_PHY;
@@ -726,7 +729,7 @@ static s32 e1000_get_phy_id_82575(struct e1000_hw *hw)
 				  phy->addr);
 		}
 	}
-
+	
 	/* A valid PHY type couldn't be found. */
 	if (phy->addr == 8) {
 		phy->addr = 0;
@@ -769,9 +772,10 @@ static s32 e1000_phy_hw_reset_sgmii_82575(struct e1000_hw *hw)
 	 * to work on SGMII.  No further documentation is given.
 	 */
 	ret_val = hw->phy.ops.write_reg(hw, 0x1B, 0x8084);
+	printk(KERN_INFO "ret_val: %ld",ret_val);
 	if (ret_val)
 		goto out;
-
+	
 	ret_val = hw->phy.ops.commit(hw);
 
 out:
@@ -1754,6 +1758,7 @@ static s32 e1000_get_media_type_82575(struct e1000_hw *hw)
 	u32 ctrl_ext = 0;
 	u32 link_mode = 0;
 
+
 	/* Set internal phy as default */
 	dev_spec->sgmii_active = false;
 	dev_spec->module_plugged = false;
@@ -1797,6 +1802,7 @@ static s32 e1000_get_media_type_82575(struct e1000_hw *hw)
 
 			break;
 		}
+
 
 		/* do not change link mode for 100BaseFX */
 		if (dev_spec->eth_flags.e100_base_fx)

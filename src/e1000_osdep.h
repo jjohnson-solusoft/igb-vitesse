@@ -69,8 +69,8 @@
 
 
 #ifdef DEBUG
-#define DEBUGOUT(S) printk(KERN_DEBUG S)
-#define DEBUGOUT1(S, A...) printk(KERN_DEBUG S, ## A)
+#define DEBUGOUT(S) printk(KERN_INFO S)
+#define DEBUGOUT1(S, A...) printk(KERN_INFO S, ## A)
 #else
 #define DEBUGOUT(S)
 #define DEBUGOUT1(S, A...)
