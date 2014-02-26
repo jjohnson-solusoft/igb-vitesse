@@ -1586,6 +1586,9 @@ static s32 e1000_setup_copper_link_82575(struct e1000_hw *hw)
 	case e1000_phy_82580:
 		ret_val = e1000_copper_link_setup_82577(hw);
 		break;
+	case vitesse_phy_8584:
+		DEBUGOUT("AKP vitesse phy setup location?");
+		break;
 	default:
 		ret_val = -E1000_ERR_PHY;
 		break;
