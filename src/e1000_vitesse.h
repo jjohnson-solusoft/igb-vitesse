@@ -8,4 +8,6 @@
 s32 e1000_check_polarity_vsc8584(struct e1000_hw *hw);
 s32 e1000_get_phy_info_vsc8584(struct e1000_hw *hw);
 */
+s32 setup_vitesse_phy_8584(struct e1000_hw *hw);
+
 #endif
